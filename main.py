@@ -18,9 +18,10 @@ while machine_state:
     elif drink_selection == "off":
         machine_state = False
     elif drink_selection in ["latte", "espresso", "cappuccino"]:
-        if machine.is_resource_sufficient(coffee_menu.find_drink(drink_selection)):
-            if machine_money.make_payment(coffee_menu.find_drink(drink_selection).cost):
-                machine.make_coffee(coffee_menu.find_drink(drink_selection))
+        drink = coffee_menu.find_drink(drink_selection)
+        if machine.is_resource_sufficient(drink):
+            if machine_money.make_payment(drink.cost):
+                machine.make_coffee(drink)
     else:
         print("You have entered an incorrect menu item.")
 
